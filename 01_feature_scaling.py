@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 arr = np.random.randint(low=1,high=10,size=(3,3))
 print('Data:',arr)
@@ -20,3 +21,19 @@ print(std_scaled.std(axis=0))
 #(or) use fit_trasnform
 std_scaled = StandardScaler().fit_transform(arr)
 print(std_scaled)
+
+# minMaxScaler - Transform features by scaling each feature to a given range
+# The transformation is given by:
+# X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
+# X_scaled = X_std * (max - min) + min
+# where min, max = feature_range.
+# by default, scales data between 0 and 1
+min_max_scaler = MinMaxScaler((2,3)).fit(arr)
+print(min_max_scaler.scale_)    #Per feature relative scaling of the data
+print('Column wise min',min_max_scaler.data_min_) #Per feature minimum seen in the actual data
+print('Column wise max',min_max_scaler.data_max_) #Per feature maximum seen in the actual data
+min_max_scaled = min_max_scaler.transform(arr)
+print(min_max_scaled)
+#(or) use fit_trasnform
+min_max_scaled = MinMaxScaler((2,3)).fit_transform(arr)
+print(min_max_scaled)
