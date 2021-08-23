@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MaxAbsScaler
 
 arr = np.random.randint(low=1,high=10,size=(3,3))
 print('Data:',arr)
@@ -37,3 +38,13 @@ print(min_max_scaled)
 #(or) use fit_trasnform
 min_max_scaled = MinMaxScaler((2,3)).fit_transform(arr)
 print(min_max_scaled)
+
+# MaxAbsScaler() - Scale each feature by its maximum absolute value.
+# The MaxAbsScaler works very similarly to the MinMaxScaler but automatically scales the data to a [-1,1] 
+# range based on the absolute maximum. 
+# ie., x_scaled = x / max(abs(x))
+# max(abs(x)) is calculated **column wise** (axis = 0)
+max_abs_scaler = MaxAbsScaler().fit(arr)
+max_abs_scaled = max_abs_scaler.transform(arr)
+print('max_abs_scaled\n',max_abs_scaled)
+# column-wise max if find out, and each element is divided by corresponding column-wise max.
