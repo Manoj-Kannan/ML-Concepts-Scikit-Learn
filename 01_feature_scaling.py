@@ -4,6 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import MaxAbsScaler
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import Normalizer
 
 arr = np.random.randint(low=1,high=10,size=(3,3))
 print('Data:',arr)
@@ -77,3 +78,13 @@ robust_scaler = RobustScaler().fit(arr)
 robust_scaled = robust_scaler.transform(arr)
 print(robust_scaled) 
 # See detailed explanation on robust_scaler.py
+
+# Normalizer - Normalization is the process of scaling individual samples to have unit norm.
+# When to normalize? Normalize data when the algorithm predicts based on the weighted relationships formed between data points.
+# Important Note:
+# One of the key differences between scaling (e.g. standardizing) and normalizing, is that 
+# normalizing is a **row-wise** operation(axis=1), while scaling is a **column-wise** operation(axis=0).
+# Data can be normalized in 3 ways: max, l1, l2(default).
+# max: x_normalized = x / max(x) 	ie. row-wise max
+# l1 : x_normalized = x / sum(X) 	ie. row-wise sum
+# l2 : x_normalized = x / sqrt(sum((i**2) for i in X))
