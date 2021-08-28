@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import MaxAbsScaler
+from sklearn.preprocessing import FunctionTransformer
 
 arr = np.random.randint(low=1,high=10,size=(3,3))
 print('Data:',arr)
@@ -48,3 +49,18 @@ max_abs_scaler = MaxAbsScaler().fit(arr)
 max_abs_scaled = max_abs_scaler.transform(arr)
 print('max_abs_scaled\n',max_abs_scaled)
 # column-wise max if find out, and each element is divided by corresponding column-wise max.
+
+# FunctionTransformer - A FunctionTransformer forwards its data to a user-defined function or function object 
+# and returns the result of this function.
+
+# FunctionTransformer - using user-defined function
+def add_one(x):
+	return x+1
+scaler = FunctionTransformer(add_one)
+scaled = scaler.fit_transform(arr)  #apply the add_one function to all input data elements
+print(scaled)
+
+# FunctionTransformer - using function object
+scaler = FunctionTransformer(np.log1p)  # np.log1p == np.log(1+input_data)
+scaled = scaler.fit_transform(arr)      #apply the np.log1p function to all input data elements
+print(scaled)
