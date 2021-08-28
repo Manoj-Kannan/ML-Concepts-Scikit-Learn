@@ -3,6 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import MaxAbsScaler
 from sklearn.preprocessing import FunctionTransformer
+from sklearn.preprocessing import RobustScaler
 
 arr = np.random.randint(low=1,high=10,size=(3,3))
 print('Data:',arr)
@@ -64,3 +65,15 @@ print(scaled)
 scaler = FunctionTransformer(np.log1p)  # np.log1p == np.log(1+input_data)
 scaled = scaler.fit_transform(arr)      #apply the np.log1p function to all input data elements
 print(scaled)
+
+# RobustScaler - Robust Scaler algorithms scale features that are robust to outliers. 
+# The method it follows is almost similar to the MinMax Scaler but it uses the interquartile range(IQR). 
+# It transforms the feature vector by subtracting the median(50%) and then dividing by the interquartile range (75% value — 25% value).
+# ie., value = (value – median) / (Q75 – Q25)
+# where, Median(50%) - value at position 25% of entire input data
+# Similarly, 25%,75% - values at position 25% and 75% of entire input data	
+# Q25, Q50, Q75 are calculated column wise (axis = 0)
+robust_scaler = RobustScaler().fit(arr)	
+robust_scaled = robust_scaler.transform(arr)
+print(robust_scaled) 
+# See detailed explanation on robust_scaler.py
