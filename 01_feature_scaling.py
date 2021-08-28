@@ -88,3 +88,18 @@ print(robust_scaled)
 # max: x_normalized = x / max(x) 	ie. row-wise max
 # l1 : x_normalized = x / sum(X) 	ie. row-wise sum
 # l2 : x_normalized = x / sqrt(sum((i**2) for i in X))
+
+#norm='max'
+max_normalizer = Normalizer(norm='max').fit(arr)
+max_normalized = max_normalizer.transform(arr)
+#norm='l1'
+l1_normalizer  = Normalizer(norm='l1').fit(arr)
+l1_normalized  = l1_normalizer.transform(arr)
+#norm='l2'
+l2_normalizer  = Normalizer(norm='l2').fit(arr)
+l2_normalized  = l2_normalizer.transform(arr)
+
+print('max_normalized\n',max_normalized)
+print('l1_normalized\n',l1_normalized)
+print('l2_normalized\n',l2_normalized)
+# See detailed explanation on normalizer.py
