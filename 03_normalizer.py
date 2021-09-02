@@ -28,3 +28,16 @@ l2_normalized  = l2_normalizer.transform(arr)
 print('max_normalized\n',max_normalized)
 print('l1_normalized\n',l1_normalized)
 print('l2_normalized\n',l2_normalized)
+
+#Explanation
+# max: x_normalized = x / max(x) 	ie. row-wise max
+values, max_norms = normalize(arr, norm='max', return_norm=True)
+print('max_norms',max_norms) # returns row-wise max
+
+# l1 : x_normalized = x / sum(X) 	ie. row-wise sum
+values, l1_norms = normalize(arr, norm='l1', return_norm=True)
+print('l1-norms',l1_norms)  # returns row-wise sum
+
+# l2 : x_normalized = x / sqrt(sum((i**2) for i in X))
+values, l2_norms = normalize(arr, norm='l2', return_norm=True)
+print('l2-norms',l2_norms)  # calculate sqrt(sum((i**2) for i in X)) for elements row-wise
