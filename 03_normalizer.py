@@ -41,3 +41,5 @@ print('l1-norms',l1_norms)  # returns row-wise sum
 # l2 : x_normalized = x / sqrt(sum((i**2) for i in X))
 values, l2_norms = normalize(arr, norm='l2', return_norm=True)
 print('l2-norms',l2_norms)  # calculate sqrt(sum((i**2) for i in X)) for elements row-wise
+
+# Reference: https://towardsdatascience.com/preprocessing-with-sklearn-a-complete-and-comprehensive-guide-670cb98fcfb9
